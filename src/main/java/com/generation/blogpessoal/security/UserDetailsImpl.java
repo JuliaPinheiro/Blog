@@ -10,22 +10,17 @@ import java.util.List;
 public class UserDetailsImpl implements UserDetails {
 
     private static final long serialVersionUID = 1L;
-    private String username;
-    private String password;
 
+    private String userName;
+    private String password;
     private List<GrantedAuthority> authorities;
 
-    public UserDetailsImpl(String username, String password, List<GrantedAuthority> authorities) {
-        this.username = username;
-        this.password = password;
-        this.authorities = authorities;
+    public UserDetailsImpl(Usuario user) {
+        this.userName = user.getUsuario();
+        this.password = user.getSenha();
     }
 
     public UserDetailsImpl() {
-
-    }
-
-    public UserDetailsImpl(Usuario usuario) {
     }
 
     @Override
@@ -35,12 +30,14 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getPassword() {
+
         return password;
     }
 
     @Override
     public String getUsername() {
-        return username;
+
+        return userName;
     }
 
     @Override
@@ -62,5 +59,6 @@ public class UserDetailsImpl implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 
 }
