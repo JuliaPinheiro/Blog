@@ -1,6 +1,5 @@
 package com.generation.blogpessoal.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -15,14 +14,14 @@ public class Postagem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @NotBlank(message = "O título é obrigatório!!")
-    @Size(min = 5, max = 100, message = "O atributo título deve ter no mínimo 5 e no máximo 100 caracteres")
+    @NotBlank(message = "O atributo título é Obrigatório!")
+    @Size(min = 5, max = 100, message = "O atributo título deve conter no mínimo 05 e no máximo 100 caracteres")
     private String titulo;
 
-    @NotBlank(message = "O texto é obrigatório!!")
-    @Size(min = 10, max = 1000, message = "O atributo texto deve ter no mínimo 5 e no máximo 100 caracteres")
+    @NotBlank(message = "O atributo texto é Obrigatório!")
+    @Size(min = 10, max = 1000, message = "O atributo texto deve conter no mínimo 10 e no máximo 1000 caracteres")
     private String texto;
 
     @UpdateTimestamp
@@ -32,17 +31,20 @@ public class Postagem {
     @JsonIgnoreProperties("postagem")
     private Tema tema;
 
+    @ManyToOne
+    @JsonIgnoreProperties("postagem")
+    private Usuario usuario;
 
-    public long getId() {
-        return id;
+    public Long getId() {
+        return this.id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     public String getTitulo() {
-        return titulo;
+        return this.titulo;
     }
 
     public void setTitulo(String titulo) {
@@ -50,7 +52,7 @@ public class Postagem {
     }
 
     public String getTexto() {
-        return texto;
+        return this.texto;
     }
 
     public void setTexto(String texto) {
@@ -58,7 +60,7 @@ public class Postagem {
     }
 
     public LocalDateTime getData() {
-        return data;
+        return this.data;
     }
 
     public void setData(LocalDateTime data) {
@@ -72,4 +74,13 @@ public class Postagem {
     public void setTema(Tema tema) {
         this.tema = tema;
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
 }
